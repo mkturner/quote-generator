@@ -38,8 +38,19 @@ async function getQuote() {
     }
 }
 
+function tweetQuote() {
+    const quote = quoteText.innerText;
+    const author = authorText.innerText;
+    const twitterUrl = `https://twitter.com/intent/tweet?text="${quote}" --${author}`;
+    window.open(twitterUrl, '_blank');
+}
+
 // Run when page loads
 getQuote();
 
 // Run when 'Get New Quote' button is clicked
-// newQuoteButton.onclick();
+// addEventListener instead of onclick if you need multiple listeners on a target
+newQuoteButton.addEventListener('click', getQuote, false);
+
+// Tweet Quote
+twitterButton.addEventListener('click', tweetQuote, false);
